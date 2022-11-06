@@ -1286,7 +1286,7 @@ public class UnitTest {
         l3.remove();
       }
       b2.addLedger(l3);
-      assertEquals(l1.size() + l2.size() + l3.size(), b2.transactionCount());
+      assertEquals(l1.size() + l2.size() + l3.size(), b2.transactionCount()); // size of 60 now
 
       for (int i = 0; i < l2.size() / 2; i++) {
         l2.remove();

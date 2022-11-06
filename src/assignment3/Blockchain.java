@@ -7,10 +7,12 @@ package assignment3;
 public class Blockchain {
   public Ledger head;
   public int curr_id;
-  public int initial_id;
   // add attributes as needed
   // needed to implement efficient code
   // tested for 'advanced' parts
+
+  public int initial_id;
+
   public Ledger tail;
   
   /**
@@ -41,8 +43,8 @@ public class Blockchain {
   public Blockchain(int id) {
     head = null;
     curr_id = id;
-    initial_id = id;
     // add initialisation of added attributes, if needed
+   initial_id = id;
     
   }
 
@@ -79,12 +81,13 @@ public class Blockchain {
     }
 
     Ledger temp = ledger;
+    temp.next = null;
 
     // if BlockChain is empty, add to the head
     if (isEmpty()) {
                     
       head = temp;
-      temp.next = null;
+      //temp.next = null;
 
       //set the first ledger id = 1
       temp.id = 1;
@@ -114,7 +117,7 @@ public class Blockchain {
     */
 
     // the ledger to be added assign its id with the current_id + 1
-    ledger.id = curr_id + 1;
+    temp.id = curr_id + 1;
 
     //update the curr_id 
     curr_id ++;
@@ -165,10 +168,7 @@ public class Blockchain {
     int count = 0;
     Ledger current = head;
 
-    for (int i=0; i<size(); i++) {
-      // if (current.head.timestamp == current.next.head.timestamp) {
-      //   break;
-      // }
+    while (current != null) {
       count += current.size();
       current = current.next;
     }
@@ -203,9 +203,36 @@ public class Blockchain {
    */
 
   public Blockchain(Blockchain b1, Blockchain b2) {
-    //
-    // TODO - 8 marks + 5 marks for efficiency
+    boolean b1_abandoned = b1 == null || b1.head == null;
+    boolean b2_abandoned = b2 == null || b2.head == null;
 
+    // construct empty blockchain
+    if (b1_abandoned && b2_abandoned) {
+      head = null;
+      curr_id = 0;
+      initial_id = 0;
+      tail = null;
+      return ;
+    }
+    //only add b2
+    if (b1_abandoned) {
+      addLedger(b2.head);
+      return ;
+    }
+    //only add b1
+    if (b2_abandoned) {
+      addLedger(b1.head);
+      return ;
+    }
+    // case when b1 is prioritised
+    if (b1.head.id <= b2.head.id) {
+      addLedger(b1.head);
+      addLedger(b2.head);
+    }
+    else {
+      addLedger(b2.head);
+      addLedger(b1.head);
+    }
     
   }
 

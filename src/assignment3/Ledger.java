@@ -14,6 +14,7 @@ public class Ledger {
   // add attributes as needed
   // needed to implement efficient code
   // tested for `advanced' parts
+  public int ledgerSize;
   public Payment tail;
 
   /**
@@ -28,7 +29,7 @@ public class Ledger {
     next = null;
     //
     // add initialisation of added attributes, if needed
-    
+    ledgerSize = 0;
   }
 
   /**
@@ -47,14 +48,7 @@ public class Ledger {
    * @return the number of payments in the Ledger
    */
   public int size() {
-
-    int count = 0;
-    Payment current = head;
-    while (current != null) {
-      count++;
-      current = current.next;
-    }
-    return count;
+    return ledgerSize;
   }
 
 /**
@@ -90,6 +84,10 @@ public class Ledger {
       
       //set the tail node
       tail = temp;
+
+      // increment ledger size
+      ledgerSize ++ ;
+
       //terminate the method
       return ;
     }
@@ -102,6 +100,8 @@ public class Ledger {
 
     //not adding the entire payment chain
     tail.next = null;
+
+    ledgerSize ++;
   }
 
   /**
@@ -241,6 +241,9 @@ public class Ledger {
     //remove the payment
     head = head.next;
 
+    //update the size after removal
+    ledgerSize --;
+    
     return removed;
   }
 
