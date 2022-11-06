@@ -80,10 +80,11 @@ public class Ledger {
     if (payment == null) {
       return ;
     }
-
+    
+    Payment temp = payment;
+    
     //if ledger is empty, add the payment to the head
     if (isEmpty()) {
-      Payment temp = payment;
       head = temp;
       temp.next = null;
       
@@ -94,13 +95,13 @@ public class Ledger {
     }
 
     //add the new payment at the end of list
-    tail.next = payment;
-
-    //not adding the entire payment chain
-    payment.next = null;
+    tail.next = temp;
 
     //update the tail node
-    tail = payment;
+    tail = temp;
+
+    //not adding the entire payment chain
+    tail.next = null;
   }
 
   /**

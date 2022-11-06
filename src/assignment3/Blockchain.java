@@ -78,10 +78,11 @@ public class Blockchain {
       return ;
     }
 
+    Ledger temp = ledger;
+
     // if BlockChain is empty, add to the head
     if (isEmpty()) {
 
-      Ledger temp = ledger;
       head = temp;
       temp.next = null;
 
@@ -118,10 +119,10 @@ public class Blockchain {
     //update the curr_id 
     curr_id ++;
     
-    tail.next = ledger;
+    tail.next = temp;
 
     //update the tail
-    tail = ledger;
+    tail = temp;
   }
 
 

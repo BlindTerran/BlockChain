@@ -1237,7 +1237,7 @@ public class UnitTest {
       };
 
       double[] payment = { 10.0, 100.1, 21.0, 55.5, 29.9, 99.9, 100.0, 29.99, 30.0, 24.95, 35.0, 34.49, 99.95, 50,
-          400 };
+          400 }; //15 payments
 
       Blockchain b1 = new Blockchain();
       Blockchain b2 = new Blockchain();
@@ -1245,7 +1245,7 @@ public class UnitTest {
 
       Ledger l1 = new Ledger();
       for (int i = 0; i < fromPerson.length; i++) {
-        l1.addPayment(new Payment(fromPerson[i], toPerson[i], payment[i], null));
+        l1.addPayment(new Payment(fromPerson[i], toPerson[i], payment[i], null)); //size 15 for each ledger
       }
 
       Ledger l2 = new Ledger();
@@ -1273,7 +1273,7 @@ public class UnitTest {
       assertEquals(l1.size() + l2.size() + l3.size(), b1.transactionCount());
       b1.addLedger(new Ledger());
       assertEquals(l1.size() + l2.size() + l3.size(), b1.transactionCount());
-      //l3.addPayment(null);
+      l3.addPayment(null);
       b1.addLedger(l3);
       assertEquals(60, b1.transactionCount());
 
