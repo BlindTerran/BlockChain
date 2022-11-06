@@ -213,12 +213,14 @@ public class Ledger {
     Payment current = head;
     while (current != null) {
       if (paymentToReverse.equals(current)) {
+
+        //swap from person and to person
         String temp = current.toPerson;
         current.toPerson = current.fromPerson;
         current.fromPerson = temp; 
       }
       current = current.next;
-    }
+    } ba
 
   }
 
@@ -243,7 +245,7 @@ public class Ledger {
 
     //update the size after removal
     ledgerSize --;
-    
+
     return removed;
   }
 

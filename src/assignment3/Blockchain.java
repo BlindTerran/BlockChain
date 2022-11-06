@@ -245,10 +245,43 @@ public class Blockchain {
    * @param blocks is an array of valid blockchains.
    */
   public Blockchain(Blockchain[] blocks) {
-    //
-    // TODO - 8 marks + 5 marks for efficiency
+    if (blocks.length == 0) {
+      head = null;
+      curr_id = 0;
+      initial_id = 0;
+      tail = null;
+      return ;
+    }
 
+    if (blocks.length == 1) {
+      addLedger(blocks[0].head);
+      return ;
+    }
     
+    // sort the blocks
+    int starter = 0;
+    while (starter < blocks.length - 1) {
+      Blockchain temp;
+      int smallest = blocks[starter].head.id;
+      int smallestIndex;
+      for (int i = starter; i<blocks.length; i++) {
+        //find the smallest id
+        if (blocks[i].head.id < smallest) {
+          smallest = blocks[i].head.id;
+          smallestIndex = i;
+
+          //swap the starter
+          temp = blocks[starter];
+          blocks[starter] = blocks[smallestIndex];
+          blocks[smallestIndex] = temp;
+        }
+      }
+      starter ++;
+    }
+    
+    for (int i=0; i<blocks.length; i++) {
+      addLedger(blocks[i].head);
+    }
   }
 
 }
