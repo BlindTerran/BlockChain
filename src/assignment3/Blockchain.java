@@ -82,7 +82,7 @@ public class Blockchain {
 
     // if BlockChain is empty, add to the head
     if (isEmpty()) {
-
+                    
       head = temp;
       temp.next = null;
 
@@ -166,6 +166,9 @@ public class Blockchain {
     Ledger current = head;
 
     for (int i=0; i<size(); i++) {
+      // if (current.head.timestamp == current.next.head.timestamp) {
+      //   break;
+      // }
       count += current.size();
       current = current.next;
     }

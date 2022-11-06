@@ -206,7 +206,7 @@ public class Ledger {
       return ;
     }
 
-    //add the payment to the ledger
+    //add the payment to the ledger as a counter-payment
     addPayment(paymentToReverse);
 
     //reverse the payment

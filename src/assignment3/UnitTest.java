@@ -990,7 +990,7 @@ public class UnitTest {
       assertEquals(currSize, b4.size()); // LogChange v2 changed b1 to b4
 
       // Case 3: Null Ledger added. Size remains unchanged
-    //  assertEquals(2, b1.size());   // size of 3
+      assertEquals(2, b1.size());   
       b1.addLedger(null);
       assertEquals(currSize, b1.size());
 
@@ -1265,16 +1265,16 @@ public class UnitTest {
       b1.addLedger(new Ledger());
       assertEquals(0, b1.transactionCount());
 
-      b1.addLedger(l1);
+      b1.addLedger(l1); // l1 size of 15
       assertEquals(l1.size(), b1.transactionCount());
-      b1.addLedger(l2);
+      b1.addLedger(l2); // l2 size of 15
       assertEquals(l1.size() + l2.size(), b1.transactionCount());
-      b1.addLedger(l3);
+      b1.addLedger(l3); // l3 size of 30
       assertEquals(l1.size() + l2.size() + l3.size(), b1.transactionCount());
       b1.addLedger(new Ledger());
       assertEquals(l1.size() + l2.size() + l3.size(), b1.transactionCount());
       l3.addPayment(null);
-      b1.addLedger(l3);
+      b1.addLedger(l3); // l3 size of 30
       assertEquals(60, b1.transactionCount());
 
       // Case 2:
